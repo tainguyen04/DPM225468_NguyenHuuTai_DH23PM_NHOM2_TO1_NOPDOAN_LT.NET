@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtTenLop = new System.Windows.Forms.TextBox();
+            this.txtTenHocKy = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMaLop = new System.Windows.Forms.TextBox();
+            this.txtMaHocKy = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvHocKy = new System.Windows.Forms.DataGridView();
+            this.MaHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtTimKiem = new System.Windows.Forms.ToolStripTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.MaHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnTimKiem = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHocKy)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtTenLop
+            // txtTenHocKy
             // 
-            this.txtTenLop.Location = new System.Drawing.Point(142, 79);
-            this.txtTenLop.Name = "txtTenLop";
-            this.txtTenLop.Size = new System.Drawing.Size(166, 26);
-            this.txtTenLop.TabIndex = 3;
+            this.txtTenHocKy.Location = new System.Drawing.Point(142, 79);
+            this.txtTenHocKy.Name = "txtTenHocKy";
+            this.txtTenHocKy.Size = new System.Drawing.Size(166, 26);
+            this.txtTenHocKy.TabIndex = 3;
             // 
             // label2
             // 
@@ -69,12 +69,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Tên học kỳ:";
             // 
-            // txtMaLop
+            // txtMaHocKy
             // 
-            this.txtMaLop.Location = new System.Drawing.Point(142, 38);
-            this.txtMaLop.Name = "txtMaLop";
-            this.txtMaLop.Size = new System.Drawing.Size(166, 26);
-            this.txtMaLop.TabIndex = 1;
+            this.txtMaHocKy.Location = new System.Drawing.Point(142, 38);
+            this.txtMaHocKy.Name = "txtMaHocKy";
+            this.txtMaHocKy.Size = new System.Drawing.Size(166, 26);
+            this.txtMaHocKy.TabIndex = 1;
             // 
             // label1
             // 
@@ -95,65 +95,14 @@
             this.MaHocKy,
             this.TenHocKy});
             this.dgvHocKy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvHocKy.Location = new System.Drawing.Point(0, 179);
+            this.dgvHocKy.Location = new System.Drawing.Point(0, 175);
             this.dgvHocKy.Name = "dgvHocKy";
             this.dgvHocKy.ReadOnly = true;
+            this.dgvHocKy.RowHeadersVisible = false;
             this.dgvHocKy.RowHeadersWidth = 62;
             this.dgvHocKy.RowTemplate.Height = 28;
-            this.dgvHocKy.Size = new System.Drawing.Size(949, 312);
+            this.dgvHocKy.Size = new System.Drawing.Size(949, 316);
             this.dgvHocKy.TabIndex = 11;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.txtTimKiem,
-            this.btnTimKiem});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 141);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(949, 38);
-            this.toolStrip1.TabIndex = 10;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(88, 33);
-            this.toolStripLabel1.Text = "Tìm kiếm:";
-            // 
-            // txtTimKiem
-            // 
-            this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(150, 38);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnThoat);
-            this.panel1.Controls.Add(this.btnXoa);
-            this.panel1.Controls.Add(this.btnLuu);
-            this.panel1.Controls.Add(this.btnSua);
-            this.panel1.Controls.Add(this.btnThem);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 491);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(949, 92);
-            this.panel1.TabIndex = 9;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtTenLop);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtMaLop);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(949, 141);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin học kỳ";
             // 
             // MaHocKy
             // 
@@ -171,13 +120,51 @@
             this.TenHocKy.Name = "TenHocKy";
             this.TenHocKy.ReadOnly = true;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.txtTimKiem,
+            this.btnTimKiem});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 141);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(949, 34);
+            this.toolStrip1.TabIndex = 10;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(88, 29);
+            this.toolStripLabel1.Text = "Tìm kiếm:";
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(150, 34);
+            // 
             // btnTimKiem
             // 
             this.btnTimKiem.Image = global::QuanLySinhVien.Properties.Resources.view;
             this.btnTimKiem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(112, 33);
+            this.btnTimKiem.Size = new System.Drawing.Size(112, 29);
             this.btnTimKiem.Text = "Tìm kiếm";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnThoat);
+            this.panel1.Controls.Add(this.btnXoa);
+            this.panel1.Controls.Add(this.btnLuu);
+            this.panel1.Controls.Add(this.btnSua);
+            this.panel1.Controls.Add(this.btnThem);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 491);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(949, 92);
+            this.panel1.TabIndex = 9;
             // 
             // btnThoat
             // 
@@ -190,6 +177,7 @@
             this.btnThoat.TabIndex = 4;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnXoa
             // 
@@ -202,6 +190,7 @@
             this.btnXoa.TabIndex = 3;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLuu
             // 
@@ -214,6 +203,7 @@
             this.btnLuu.TabIndex = 2;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnSua
             // 
@@ -226,6 +216,7 @@
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -238,6 +229,21 @@
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtTenHocKy);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtMaHocKy);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(949, 141);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thông tin học kỳ";
             // 
             // frmHocKy
             // 
@@ -251,6 +257,7 @@
             this.Name = "frmHocKy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Học kỳ";
+            this.Load += new System.EventHandler(this.frmHocKy_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHocKy)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -269,9 +276,9 @@
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.ToolStripButton btnTimKiem;
-        private System.Windows.Forms.TextBox txtTenLop;
+        private System.Windows.Forms.TextBox txtTenHocKy;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtMaLop;
+        private System.Windows.Forms.TextBox txtMaHocKy;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.DataGridView dgvHocKy;

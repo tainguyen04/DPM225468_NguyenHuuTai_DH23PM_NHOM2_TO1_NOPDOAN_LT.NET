@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtMaMonHoc = new System.Windows.Forms.TextBox();
+            this.numTinChi = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtTenMonHoc = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.numTinChi = new System.Windows.Forms.NumericUpDown();
+            this.txtMaMonHoc = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.dgvMonHoc = new System.Windows.Forms.DataGridView();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtTimKiem = new System.Windows.Forms.ToolStripTextBox();
             this.btnTimKiem = new System.Windows.Forms.ToolStripButton();
+            this.dgvMonHoc = new System.Windows.Forms.DataGridView();
             this.MaMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoTinChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,47 +73,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin môn học";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã môn học:";
-            // 
-            // txtMaMonHoc
-            // 
-            this.txtMaMonHoc.Location = new System.Drawing.Point(142, 38);
-            this.txtMaMonHoc.Name = "txtMaMonHoc";
-            this.txtMaMonHoc.Size = new System.Drawing.Size(166, 26);
-            this.txtMaMonHoc.TabIndex = 1;
-            // 
-            // txtTenMonHoc
-            // 
-            this.txtTenMonHoc.Location = new System.Drawing.Point(142, 79);
-            this.txtTenMonHoc.Name = "txtTenMonHoc";
-            this.txtTenMonHoc.Size = new System.Drawing.Size(166, 26);
-            this.txtTenMonHoc.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên môn học:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 128);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Số tín chỉ:";
-            // 
             // numTinChi
             // 
             this.numTinChi.Location = new System.Drawing.Point(142, 126);
@@ -136,6 +95,47 @@
             0,
             0});
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 128);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 20);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Số tín chỉ:";
+            // 
+            // txtTenMonHoc
+            // 
+            this.txtTenMonHoc.Location = new System.Drawing.Point(142, 79);
+            this.txtTenMonHoc.Name = "txtTenMonHoc";
+            this.txtTenMonHoc.Size = new System.Drawing.Size(166, 26);
+            this.txtTenMonHoc.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Tên môn học:";
+            // 
+            // txtMaMonHoc
+            // 
+            this.txtMaMonHoc.Location = new System.Drawing.Point(142, 38);
+            this.txtMaMonHoc.Name = "txtMaMonHoc";
+            this.txtMaMonHoc.Size = new System.Drawing.Size(166, 26);
+            this.txtMaMonHoc.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã môn học:";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnThoat);
@@ -149,38 +149,6 @@
             this.panel1.Size = new System.Drawing.Size(949, 92);
             this.panel1.TabIndex = 1;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.txtTimKiem,
-            this.btnTimKiem});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 191);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(949, 38);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // dgvMonHoc
-            // 
-            this.dgvMonHoc.AllowUserToAddRows = false;
-            this.dgvMonHoc.AllowUserToDeleteRows = false;
-            this.dgvMonHoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvMonHoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMonHoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MaMonHoc,
-            this.TenMonHoc,
-            this.SoTinChi});
-            this.dgvMonHoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMonHoc.Location = new System.Drawing.Point(0, 229);
-            this.dgvMonHoc.Name = "dgvMonHoc";
-            this.dgvMonHoc.ReadOnly = true;
-            this.dgvMonHoc.RowHeadersWidth = 62;
-            this.dgvMonHoc.RowTemplate.Height = 28;
-            this.dgvMonHoc.Size = new System.Drawing.Size(949, 262);
-            this.dgvMonHoc.TabIndex = 3;
-            // 
             // btnThoat
             // 
             this.btnThoat.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -192,6 +160,7 @@
             this.btnThoat.TabIndex = 4;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnXoa
             // 
@@ -204,6 +173,7 @@
             this.btnXoa.TabIndex = 3;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLuu
             // 
@@ -216,6 +186,7 @@
             this.btnLuu.TabIndex = 2;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnSua
             // 
@@ -228,6 +199,7 @@
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -240,26 +212,59 @@
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.txtTimKiem,
+            this.btnTimKiem});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 191);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(949, 34);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(88, 33);
+            this.toolStripLabel1.Size = new System.Drawing.Size(88, 29);
             this.toolStripLabel1.Text = "Tìm kiếm:";
             // 
             // txtTimKiem
             // 
             this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(150, 38);
+            this.txtTimKiem.Size = new System.Drawing.Size(150, 34);
             // 
             // btnTimKiem
             // 
             this.btnTimKiem.Image = global::QuanLySinhVien.Properties.Resources.view;
             this.btnTimKiem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(112, 33);
+            this.btnTimKiem.Size = new System.Drawing.Size(112, 29);
             this.btnTimKiem.Text = "Tìm kiếm";
+            // 
+            // dgvMonHoc
+            // 
+            this.dgvMonHoc.AllowUserToAddRows = false;
+            this.dgvMonHoc.AllowUserToDeleteRows = false;
+            this.dgvMonHoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMonHoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMonHoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaMonHoc,
+            this.TenMonHoc,
+            this.SoTinChi});
+            this.dgvMonHoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMonHoc.Location = new System.Drawing.Point(0, 225);
+            this.dgvMonHoc.Name = "dgvMonHoc";
+            this.dgvMonHoc.ReadOnly = true;
+            this.dgvMonHoc.RowHeadersWidth = 62;
+            this.dgvMonHoc.RowTemplate.Height = 28;
+            this.dgvMonHoc.Size = new System.Drawing.Size(949, 266);
+            this.dgvMonHoc.TabIndex = 3;
             // 
             // MaMonHoc
             // 
