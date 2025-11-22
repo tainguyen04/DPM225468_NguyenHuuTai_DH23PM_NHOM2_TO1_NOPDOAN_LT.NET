@@ -137,10 +137,19 @@ namespace QuanLySinhVien.Forms
                 frmTaiKhoan.Activate();
             }
         }
-
+        frmDiemHocTap frmDiemHocTap = null;
         private void mnuDiemHocTap_Click(object sender, EventArgs e)
         {
-
+            if(frmDiemHocTap == null || frmDiemHocTap.IsDisposed)
+            {
+                frmDiemHocTap= new frmDiemHocTap();
+                frmDiemHocTap.MdiParent = this;
+                frmDiemHocTap.Show();
+            }
+            else
+            {
+                frmDiemHocTap.Activate();
+            }
         }
 
         private void mnuDiemRenLuyen_Click(object sender, EventArgs e)

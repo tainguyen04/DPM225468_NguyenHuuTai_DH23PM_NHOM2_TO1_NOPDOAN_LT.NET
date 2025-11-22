@@ -151,7 +151,10 @@ namespace QuanLySinhVien.Forms
         }
         private void LoadDataToGridview()
         {
-            string sql = "SELECT * FROM tblLop INNER JOIN tblKhoa ON tblLop.MaKhoa =  tblKhoa.MaKhoa";
+            string sql = @"SELECT tblLop.MaLop, tblLop.TenLop, tblLop.MaKhoa, tblLop.SiSo, 
+                          tblKhoa.TenKhoa 
+                   FROM tblLop 
+                   INNER JOIN tblKhoa ON tblLop.MaKhoa = tblKhoa.MaKhoa";
             tblLop = Helper.Functions.GetDataToTable(sql);
             dgvLop.DataSource = tblLop;
         }
