@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.numRenLuyen = new System.Windows.Forms.NumericUpDown();
+            this.numDiemRenLuyen = new System.Windows.Forms.NumericUpDown();
             this.cboXepLoai = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboTenHocKy = new System.Windows.Forms.ComboBox();
@@ -40,45 +40,41 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDiemRenLuyen = new System.Windows.Forms.DataGridView();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.txtTimKiem = new System.Windows.Forms.ToolStripTextBox();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MSSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiemRenLuyen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.XepLoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnTimKiem = new System.Windows.Forms.ToolStripButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numRenLuyen)).BeginInit();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.txtTimKiem = new System.Windows.Forms.ToolStripTextBox();
+            this.btnTimKiem = new System.Windows.Forms.ToolStripButton();
+            ((System.ComponentModel.ISupportInitialize)(this.numDiemRenLuyen)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiemRenLuyen)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // numRenLuyen
+            // numDiemRenLuyen
             // 
-            this.numRenLuyen.Location = new System.Drawing.Point(488, 36);
-            this.numRenLuyen.Name = "numRenLuyen";
-            this.numRenLuyen.Size = new System.Drawing.Size(199, 26);
-            this.numRenLuyen.TabIndex = 14;
+            this.numDiemRenLuyen.Location = new System.Drawing.Point(488, 36);
+            this.numDiemRenLuyen.Name = "numDiemRenLuyen";
+            this.numDiemRenLuyen.Size = new System.Drawing.Size(199, 26);
+            this.numDiemRenLuyen.TabIndex = 14;
+            this.numDiemRenLuyen.ValueChanged += new System.EventHandler(this.numDiemRenLuyen_ValueChanged);
             // 
             // cboXepLoai
             // 
             this.cboXepLoai.FormattingEnabled = true;
-            this.cboXepLoai.Items.AddRange(new object[] {
-            "Giỏi",
-            "Khá",
-            "Trung bình",
-            "Yếu"});
             this.cboXepLoai.Location = new System.Drawing.Point(489, 75);
             this.cboXepLoai.Name = "cboXepLoai";
             this.cboXepLoai.Size = new System.Drawing.Size(198, 28);
@@ -86,7 +82,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.numRenLuyen);
+            this.groupBox1.Controls.Add(this.numDiemRenLuyen);
             this.groupBox1.Controls.Add(this.cboXepLoai);
             this.groupBox1.Controls.Add(this.cboTenHocKy);
             this.groupBox1.Controls.Add(this.txtHoTen);
@@ -102,7 +98,7 @@
             this.groupBox1.Size = new System.Drawing.Size(949, 202);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin điểm học tập";
+            this.groupBox1.Text = "Thông tin điểm rèn luyện";
             // 
             // cboTenHocKy
             // 
@@ -196,44 +192,6 @@
             this.dgvDiemRenLuyen.Size = new System.Drawing.Size(949, 251);
             this.dgvDiemRenLuyen.TabIndex = 15;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnThoat);
-            this.panel1.Controls.Add(this.btnXoa);
-            this.panel1.Controls.Add(this.btnLuu);
-            this.panel1.Controls.Add(this.btnSua);
-            this.panel1.Controls.Add(this.btnThem);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 491);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(949, 92);
-            this.panel1.TabIndex = 13;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.txtTimKiem,
-            this.btnTimKiem});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 202);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(949, 38);
-            this.toolStrip1.TabIndex = 16;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(88, 33);
-            this.toolStripLabel1.Text = "Tìm kiếm:";
-            // 
-            // txtTimKiem
-            // 
-            this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(150, 38);
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -282,13 +240,18 @@
             this.XepLoai.Name = "XepLoai";
             this.XepLoai.ReadOnly = true;
             // 
-            // btnTimKiem
+            // panel1
             // 
-            this.btnTimKiem.Image = global::QuanLySinhVien.Properties.Resources.view;
-            this.btnTimKiem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(112, 33);
-            this.btnTimKiem.Text = "Tìm kiếm";
+            this.panel1.Controls.Add(this.btnThoat);
+            this.panel1.Controls.Add(this.btnXoa);
+            this.panel1.Controls.Add(this.btnLuu);
+            this.panel1.Controls.Add(this.btnSua);
+            this.panel1.Controls.Add(this.btnThem);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 491);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(949, 92);
+            this.panel1.TabIndex = 13;
             // 
             // btnThoat
             // 
@@ -301,6 +264,7 @@
             this.btnThoat.TabIndex = 4;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnXoa
             // 
@@ -313,6 +277,7 @@
             this.btnXoa.TabIndex = 3;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLuu
             // 
@@ -325,6 +290,7 @@
             this.btnLuu.TabIndex = 2;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnSua
             // 
@@ -337,6 +303,7 @@
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -349,6 +316,40 @@
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.txtTimKiem,
+            this.btnTimKiem});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 202);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(949, 38);
+            this.toolStrip1.TabIndex = 16;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(88, 29);
+            this.toolStripLabel1.Text = "Tìm kiếm:";
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(150, 34);
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.Image = global::QuanLySinhVien.Properties.Resources.view;
+            this.btnTimKiem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(112, 29);
+            this.btnTimKiem.Text = "Tìm kiếm";
             // 
             // frmDiemRenLuyen
             // 
@@ -362,7 +363,8 @@
             this.Name = "frmDiemRenLuyen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Điểm rèn luyện";
-            ((System.ComponentModel.ISupportInitialize)(this.numRenLuyen)).EndInit();
+            this.Load += new System.EventHandler(this.frmDiemRenLuyen_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numDiemRenLuyen)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiemRenLuyen)).EndInit();
@@ -377,7 +379,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.NumericUpDown numRenLuyen;
+        private System.Windows.Forms.NumericUpDown numDiemRenLuyen;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnLuu;

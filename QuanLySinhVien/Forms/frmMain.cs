@@ -151,10 +151,19 @@ namespace QuanLySinhVien.Forms
                 frmDiemHocTap.Activate();
             }
         }
-
+        frmDiemRenLuyen frmDiemRenLuyen = null;
         private void mnuDiemRenLuyen_Click(object sender, EventArgs e)
         {
-
+            if (frmDiemRenLuyen == null || frmDiemRenLuyen.IsDisposed) 
+            {
+                frmDiemRenLuyen= new frmDiemRenLuyen();
+                frmDiemRenLuyen.MdiParent= this;
+                frmDiemRenLuyen.Show();
+            }
+            else
+            {
+                frmDiemRenLuyen.Activate();
+            }
         }
 
         private void mnuBangDiem_Click(object sender, EventArgs e)
