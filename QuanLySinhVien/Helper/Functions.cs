@@ -79,15 +79,15 @@ namespace QuanLySinhVien.Helper
             cmd = null;
         }
         //Hàm thực hiện kiểm tra sỉ số lớp
-        public static int GetFieldValues(string sql)
+        public static object GetFieldValues(string sql)
         {
             SqlDataAdapter da = new SqlDataAdapter(sql,Conn);
             DataTable dt = new DataTable();
             da.Fill(dt);
             if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
-                return Convert.ToInt32(dt.Rows[0][0]);
+                return dt.Rows[0][0]; 
             else
-                return 0;
+                return null;
         }
 
     }

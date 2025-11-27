@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -59,7 +60,7 @@ namespace QuanLySinhVien.Forms
 
         private void frmDiemRenLuyen_Load(object sender, EventArgs e)
         {
-            dgvDiemRenLuyen.AutoGenerateColumns = true;
+            dgvDiemRenLuyen.AutoGenerateColumns = false;
             BatTat(false);
             LayDanhSachSinhVien();
             LayDanhSachHocKy();
@@ -219,5 +220,92 @@ namespace QuanLySinhVien.Forms
             if (diem >= 50) return "Trung bình";
             return "Yếu";
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                MessageBox.Show("Bạn hãy nhập điều kiện tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = @"SELECT drl.Id, drl.MSSV, sv.HoTen, drl.MaHocKy, hk.TenHocKy, 
+                          drl.DiemRenLuyen, drl.XepLoai
+                   FROM tblDiemRenLuyen drl
+                   INNER JOIN tblSinhVien sv ON drl.MSSV = sv.MSSV
+                   INNER JOIN tblHocKy hk ON drl.MaHocKy = hk.MaHocKy
+                   WHERE drl.MSSV LIKE N'%" + key + "%' " +
+                           "OR sv.HoTen LIKE N'%" + key + "%' " +
+                           "OR hk.TenHocKy LIKE N'%" + key + "%' " +
+                           "OR drl.XepLoai LIKE N'%" + key + "%'";
+
+            tblDiemRenLuyen = Helper.Functions.GetDataToTable(sql);
+
+            if (tblDiemRenLuyen.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Có " + tblDiemRenLuyen.Rows.Count + " bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgvDiemRenLuyen.DataSource = tblDiemRenLuyen;
+
+            txtTimKiem.Clear();
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Xuất dữ liệu Điểm Rèn Luyện ra Excel";
+            saveFileDialog.Filter = "Tập tin Excel |*.xls;*.xlsx";
+            saveFileDialog.FileName = "DiemRenLuyen_" + DateTime.Now.ToString("yyyy_MM_dd") + ".xlsx";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // SQL lấy dữ liệu Điểm Rèn Luyện + Sinh viên + Học kỳ
+                    string sql = @"SELECT drl.Id, drl.MSSV, sv.HoTen, drl.MaHocKy, hk.TenHocKy,
+                                  drl.DiemRenLuyen, drl.XepLoai
+                           FROM tblDiemRenLuyen drl
+                           INNER JOIN tblSinhVien sv ON drl.MSSV = sv.MSSV
+                           INNER JOIN tblHocKy hk ON drl.MaHocKy = hk.MaHocKy";
+
+                    DataTable table = Helper.Functions.GetDataToTable(sql);
+
+                    if (table.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        var sheet = wb.Worksheets.Add(table, "DiemRenLuyen");
+                        sheet.Columns().AdjustToContents(); // tự động điều chỉnh cột
+                        wb.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("Đã xuất dữ liệu Điểm Rèn Luyện ra Excel thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnTimKiem_Click(sender, e);
+        }
+
+        private void btnHuy_Click_1(object sender, EventArgs e)
+        {
+            frmDiemRenLuyen_Load(sender, e);
+        }
+
+        
     }
 }

@@ -173,5 +173,44 @@ namespace QuanLySinhVien.Forms
             tblLop = Helper.Functions.GetDataToTable(sql);
             dgvLop.DataSource = tblLop;
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                MessageBox.Show("Bạn hãy nhập điều kiện tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = @"SELECT tblLop.MaLop, tblLop.TenLop, tblLop.MaKhoa, tblLop.SiSo, tblKhoa.TenKhoa
+                   FROM tblLop
+                   INNER JOIN tblKhoa ON tblLop.MaKhoa = tblKhoa.MaKhoa
+                   WHERE tblLop.MaLop LIKE N'%" + key + "%' OR tblLop.TenLop LIKE N'%" + key + "%'";
+
+            tblLop = Helper.Functions.GetDataToTable(sql);
+
+            if (tblLop.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Có " + tblLop.Rows.Count + " bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgvLop.DataSource = tblLop;
+            txtTimKiem.Clear();
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnTimKiem_Click(sender, e);
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            frmLop_Load(sender, e);
+        }
+
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -67,7 +68,7 @@ namespace QuanLySinhVien.Forms
 
         private void frmDiemHocTap_Load(object sender, EventArgs e)
         {
-            dgvDiemHocTap.AutoGenerateColumns = true;
+            dgvDiemHocTap.AutoGenerateColumns = false;
             BatTat(false);
             LayDanhSachSinhVien();
             LayDanhSachMonHoc();
@@ -221,7 +222,11 @@ namespace QuanLySinhVien.Forms
 
         private void LoadDataGridview()
         {
-            string sql = "SELECT * FROM tblDiemHocTap";
+            string sql = @"SELECT d.*, sv.MSSV, sv.HoTen, hk.TenHocKy, mh.TenMonHoc
+                           FROM tblDiemHocTap d
+                           INNER JOIN tblSinhVien sv ON d.MSSV = sv.MSSV
+                           INNER JOIN tblHocKy hk ON d.MaHocKy = hk.MaHocKy
+                           INNER JOIN tblMonHoc mh ON d.MaMonHoc = mh.MaMonHoc";
             tblDiemHocTap = Helper.Functions.GetDataToTable(sql);
             dgvDiemHocTap.DataSource = tblDiemHocTap;
         }
@@ -257,6 +262,95 @@ namespace QuanLySinhVien.Forms
             if (diemHe10 >= 6.5f) return "Khá";
             if (diemHe10 >= 5.0f) return "Trung bình";
             return "Yếu";
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Xuất dữ liệu Điểm Học Tập ra Excel";
+            saveFileDialog.Filter = "Tập tin Excel |*.xls;*.xlsx";
+            saveFileDialog.FileName = "DiemHocTap_" + DateTime.Now.ToString("yyyy_MM_dd") + ".xlsx";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // SQL lấy dữ liệu Điểm Học Tập + Sinh viên + Lớp + Học kỳ + Môn học
+                    string sql = @"SELECT d.MaSV, sv.HoTen, l.TenLop, d.MaHocKy, hk.TenHocKy,
+                                  d.MaMonHoc, mh.TenMonHoc, d.Diem10, d.Diem4
+                           FROM tblDiemHocTap d
+                           INNER JOIN tblSinhVien sv ON d.MaSV = sv.MaSV
+                           INNER JOIN tblLop l ON sv.MaLop = l.MaLop
+                           INNER JOIN tblHocKy hk ON d.MaHocKy = hk.MaHocKy
+                           INNER JOIN tblMonHoc mh ON d.MaMonHoc = mh.MaMonHoc";
+
+                    DataTable table = Helper.Functions.GetDataToTable(sql);
+
+                    if (table.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        var sheet = wb.Worksheets.Add(table, "DiemHocTap");
+                        sheet.Columns().AdjustToContents(); // tự động điều chỉnh cột
+                        wb.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("Đã xuất dữ liệu Điểm Học Tập ra Excel thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                MessageBox.Show("Bạn hãy nhập điều kiện tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = @"SELECT d.*, sv.HoTen, hk.TenHocKy, mh.TenMonHoc
+                   FROM tblDiemHocTap d
+                   INNER JOIN tblSinhVien sv ON d.MSSV = sv.MSSV
+                   INNER JOIN tblHocKy hk ON d.MaHocKy = hk.MaHocKy
+                   INNER JOIN tblMonHoc mh ON d.MaMonHoc = mh.MaMonHoc
+                   WHERE d.MSSV LIKE N'%" + key + "%' " +
+                           "OR sv.HoTen LIKE N'%" + key + "%' " +
+                           "OR hk.TenHocKy LIKE N'%" + key + "%' " +
+                           "OR mh.TenMonHoc LIKE N'%" + key + "%' " +
+                           "OR d.MaMonHoc LIKE N'%" + key + "%'" +
+                           "OR d.XepLoai LIKE N'%" + key + "%'";
+
+            tblDiemHocTap = Helper.Functions.GetDataToTable(sql);
+
+            if (tblDiemHocTap.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Có " + tblDiemHocTap.Rows.Count + " bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgvDiemHocTap.DataSource = tblDiemHocTap;
+
+            txtTimKiem.Clear();
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnTimKiem_Click(sender, e);
+        }
+
+        private void btnHuy_Click_1(object sender, EventArgs e)
+        {
+            frmDiemHocTap_Load(sender, e);
         }
     }
 }

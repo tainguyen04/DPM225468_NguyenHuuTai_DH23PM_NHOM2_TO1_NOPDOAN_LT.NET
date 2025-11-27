@@ -75,6 +75,7 @@
             this.btnDangNhap.TabIndex = 6;
             this.btnDangNhap.Text = "ĐĂNG NHẬP";
             this.btnDangNhap.UseVisualStyleBackColor = true;
+            this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
             // chkMatKhau
             // 
@@ -85,6 +86,7 @@
             this.chkMatKhau.TabIndex = 5;
             this.chkMatKhau.Text = "Hiện mật khẩu";
             this.chkMatKhau.UseVisualStyleBackColor = true;
+            this.chkMatKhau.CheckedChanged += new System.EventHandler(this.chkMatKhau_CheckedChanged);
             // 
             // txtMatKhau
             // 
@@ -147,6 +149,7 @@
             this.Name = "frmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";
+            this.Load += new System.EventHandler(this.frmDangNhap_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);

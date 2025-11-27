@@ -1,4 +1,5 @@
-﻿using SlugGenerator;
+﻿using ClosedXML.Excel;
+using SlugGenerator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -173,8 +174,8 @@ namespace QuanLySinhVien.Forms
                 
 
                 string maLop = cboTenLop.SelectedValue.ToString();
-                int siSo = Helper.Functions.GetFieldValues("SELECT SiSo FROM tblLop WHERE MaLop='" + maLop + "'");
-                int soSV = Helper.Functions.GetFieldValues("SELECT COUNT(*) FROM tblSinhVien WHERE MaLop='" + maLop + "'");
+                int siSo = (int)Helper.Functions.GetFieldValues("SELECT SiSo FROM tblLop WHERE MaLop='" + maLop + "'");
+                int soSV = (int)Helper.Functions.GetFieldValues("SELECT COUNT(*) FROM tblSinhVien WHERE MaLop='" + maLop + "'");
                 if (soSV >= siSo)
                 {
                     MessageBox.Show("Lớp này đã đầy. Không thể thêm sinh viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -338,5 +339,90 @@ namespace QuanLySinhVien.Forms
                 }
             }
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                MessageBox.Show("Bạn hãy nhập điều kiện tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = @"SELECT *
+                   FROM tblSinhVien sv
+                   INNER JOIN tblLop l ON sv.MaLop = l.MaLop
+                   WHERE sv.MSSV LIKE N'%" + key + "%' " +
+                           "OR sv.HoTen LIKE N'%" + key + "%' " +
+                           "OR sv.MaLop LIKE N'%" + key + "%' " +
+                           "OR l.TenLop LIKE N'%" + key + "%'";
+
+            tblSV = Helper.Functions.GetDataToTable(sql);
+
+            if (tblSV.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Có " + tblSV.Rows.Count + " bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgvSinhVien.DataSource = tblSV;
+            dgvSinhVien.Refresh();
+
+            txtTimKiem.Clear();
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Xuất dữ liệu ra tập tin Excel";
+            saveFileDialog.Filter = "Tập tin Excel |*.xls;*.xlsx";
+            saveFileDialog.FileName = "ThongTinSinhVien_" + DateTime.Now.ToString("yyyy_MM_dd") + ".xlsx";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // SQL lấy dữ liệu sinh viên + lớp + khoa
+                    string sql = @"SELECT sv.MSSV, sv.HoTen, sv.GioiTinh, sv.SoDienThoai, sv.DiaChi, sv.NgaySinh,
+                                  sv.MaLop, l.TenLop, sv.HinhAnh
+                           FROM tblSinhVien sv
+                           INNER JOIN tblLop l ON sv.MaLop = l.MaLop";
+
+                    DataTable table = Helper.Functions.GetDataToTable(sql);
+
+                    if (table.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        var sheet = wb.Worksheets.Add(table, "ThongTinSinhVien");
+                        sheet.Columns().AdjustToContents();
+                        wb.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("Đã xuất dữ liệu ra tập tin Excel thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnTimKiem_Click(sender, e);
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            frmSinhVien_Load(sender, e);
+        }
+
+       
     }
 }

@@ -26,9 +26,11 @@ namespace QuanLySinhVien.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        public string QLSV {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\quanlysinhvie" +
+            "n.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True")]
+        public string quanlysinhvienConnectionString {
             get {
-                return ((string)(this["QLSV"]));
+                return ((string)(this["quanlysinhvienConnectionString"]));
             }
         }
     }

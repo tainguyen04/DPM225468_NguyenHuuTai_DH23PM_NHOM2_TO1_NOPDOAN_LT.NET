@@ -35,7 +35,7 @@ namespace QuanLySinhVien.Forms
 
         private void frmHocKy_Load(object sender, EventArgs e)
         {
-            dgvHocKy.AutoGenerateColumns = true;
+            dgvHocKy.AutoGenerateColumns = false;
             BatTat(false);
             LoadDataGridview();
             txtMaHocKy.DataBindings.Clear();
@@ -139,5 +139,41 @@ namespace QuanLySinhVien.Forms
             tblHocKy = Helper.Functions.GetDataToTable(sql);
             dgvHocKy.DataSource = tblHocKy;
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                MessageBox.Show("Bạn hãy nhập điều kiện tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = "SELECT * FROM tblHocKy WHERE MaHocKy LIKE N'%" + key + "%' OR TenHocKy LIKE N'%" + key + "%'";
+
+            tblHocKy = Helper.Functions.GetDataToTable(sql);
+
+            if (tblHocKy.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Có " + tblHocKy.Rows.Count + " bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgvHocKy.DataSource = tblHocKy;
+            txtTimKiem.Clear();
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnTimKiem_Click(sender, e);
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            frmHocKy_Load(sender, e);
+        }
+
+        
     }
 }

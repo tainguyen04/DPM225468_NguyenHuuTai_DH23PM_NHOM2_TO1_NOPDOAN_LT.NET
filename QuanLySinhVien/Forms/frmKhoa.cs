@@ -139,5 +139,41 @@ namespace QuanLySinhVien.Forms
             dgvKhoa.DataSource = tblKhoa;
         }
 
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                MessageBox.Show("Bạn hãy nhập điều kiện tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = "SELECT * FROM tblKhoa WHERE MaKhoa LIKE N'%" + key + "%' OR TenKhoa LIKE N'%" + key + "%'";
+
+            tblKhoa = Helper.Functions.GetDataToTable(sql);
+
+            if (tblKhoa.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Có " + tblKhoa.Rows.Count + " bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgvKhoa.DataSource = tblKhoa;
+            txtTimKiem.Clear();
+
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnTimKiem_Click(sender, e);
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            frmKhoa_Load(sender, e);
+        }
+
+        
     }
 }

@@ -28,7 +28,7 @@ namespace QuanLySinhVien.Forms
 
         private void frmMonHoc_Load(object sender, EventArgs e)
         {
-            dgvMonHoc.AutoGenerateColumns = true;
+            dgvMonHoc.AutoGenerateColumns = false;
             BatTat(false);
             LoadDataGridview();
             txtMaMonHoc.DataBindings.Clear();
@@ -149,6 +149,46 @@ namespace QuanLySinhVien.Forms
             string sql = "SELECT * FROM tblMonHoc";
             tblMonHoc = Helper.Functions.GetDataToTable(sql);
             dgvMonHoc.DataSource = tblMonHoc;
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                MessageBox.Show("Bạn hãy nhập điều kiện tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = "SELECT * FROM tblMonHoc WHERE MaMonHoc LIKE N'%" + key + "%' OR TenMonHoc LIKE N'%" + key + "%'";
+
+            tblMonHoc = Helper.Functions.GetDataToTable(sql);
+
+            if (tblMonHoc.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Có " + tblMonHoc.Rows.Count + " bản ghi thoả mãn điều kiện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgvMonHoc.DataSource = tblMonHoc;
+            txtTimKiem.Clear();
+
+
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnTimKiem_Click(sender, e);
+        }
+
+      
+
+        
+
+        private void btnHuy_Click_1(object sender, EventArgs e)
+        {
+            frmMonHoc_Load(sender, e);
         }
     }
 }

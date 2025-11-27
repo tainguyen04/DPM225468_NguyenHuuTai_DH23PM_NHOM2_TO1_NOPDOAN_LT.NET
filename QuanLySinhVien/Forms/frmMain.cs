@@ -8,38 +8,87 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLySinhVien.Helper;
+using static System.Collections.Specialized.BitVector32;
 namespace QuanLySinhVien.Forms
 {
     public partial class frmMain: Form
     {
+        private string _quyen;
         public frmMain()
         {
             InitializeComponent();
+            statusStrip1.Items.Add(toolStripStatusLabel1);
         }
         
         private void frmMain_Load(object sender, EventArgs e)
         {
+            ChuaPhanQuyen();
             Functions.Connect();
             frmDangNhap frmDangNhap = new frmDangNhap();
             if (frmDangNhap.ShowDialog() == DialogResult.OK)
             {
-                // Đăng nhập thành công
+                _quyen = frmDangNhap.Quyen;
+                PhanQuyen();
             }
         }
-        frmDangNhap frmDangNhap = null;
+        public void ChuaPhanQuyen()
+        {
+            mnuQuanLy.Enabled = false;
+            mnuHocTap.Enabled = false;
+            
+            mnuDangXuat.Enabled = false;
+
+            mnuDangNhap.Enabled = true;
+      
+        }
+        public void QuyenNhanVien()
+        {
+            mnuDangNhap.Enabled = false;
+            mnuTaiKhoan.Enabled = false;
+            mnuLop.Enabled = false;
+            mnuKhoa.Enabled = false;
+            mnuHocKy.Enabled = false;
+
+            mnuDangXuat.Enabled = true;
+            mnuQuanLy.Enabled = true;
+            mnuHocTap.Enabled = true;
+            
+        }
+        public void QuyenAdmin()
+        {
+            mnuDangNhap.Enabled = false;
+
+            mnuDangXuat.Enabled = true;
+            mnuQuanLy.Enabled = true;
+            mnuHocTap.Enabled = true;
+
+        }
+        public void PhanQuyen()
+        {
+           
+            if (_quyen == "Admin")
+                QuyenAdmin();
+            else if(_quyen == "NhanVien")
+                QuyenNhanVien();
+
+            toolStripStatusLabel1.Text = "Vai trò: "  + _quyen;
+        }
+        frmDangNhap DangNhap = null;
         private void mnuDangNhap_Click(object sender, EventArgs e)
         {
-            if(frmDangNhap == null || frmDangNhap.IsDisposed)
+            if(DangNhap == null || DangNhap.IsDisposed)
             {
-                frmDangNhap = new frmDangNhap();
-                if (frmDangNhap.ShowDialog() == DialogResult.OK)
+                DangNhap = new frmDangNhap();
+                if (DangNhap.ShowDialog() == DialogResult.OK)
                 {
-                    // Đăng nhập thành công
+                    _quyen = DangNhap.Quyen;
+                    PhanQuyen();
                 }
+                DangNhap = null;
             }
             else
             {
-                frmDangNhap.Activate();
+                DangNhap.Activate();
             }
         }
 
@@ -166,34 +215,33 @@ namespace QuanLySinhVien.Forms
             }
         }
 
-        private void mnuBangDiem_Click(object sender, EventArgs e)
-        {
+      
 
+        
+        private void mnuDangXuat_Click(object sender, EventArgs e)
+        {
+            DangNhap.Quyen = null;
+            ChuaPhanQuyen();
         }
 
-        private void mnuDanhSachSinhVien_Click(object sender, EventArgs e)
+        private void mnuHuongDan_Click(object sender, EventArgs e)
         {
+            string githubUrl = "https://github.com/tainguyen04/DPM225468_NguyenHuuTai_DH23PM_NHOM2_TO1_NOPDOAN_LT.NET/blob/main/README.md";
 
-        }
-
-        private void mnuBangDiemTongHop_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MnuThongKeTheoLop_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mnuThongKeTheoDHT_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mnuThongKeTheoDRL_Click(object sender, EventArgs e)
-        {
-
+            
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = githubUrl,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể mở hướng dẫn: {ex.Message}", "Lỗi",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
