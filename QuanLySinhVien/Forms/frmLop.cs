@@ -54,6 +54,8 @@ namespace QuanLySinhVien.Forms
             txtTenLop.DataBindings.Add("Text", dgvLop.DataSource, "TenLop", false, DataSourceUpdateMode.Never);
             cboTenKhoa.DataBindings.Clear();
             cboTenKhoa.DataBindings.Add("SelectedValue", dgvLop.DataSource, "MaKhoa", false, DataSourceUpdateMode.Never);
+            numSiSo.DataBindings.Clear();
+            numSiSo.DataBindings.Add("Value",dgvLop.DataSource,"SiSo",false, DataSourceUpdateMode.Never);
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -64,6 +66,7 @@ namespace QuanLySinhVien.Forms
             txtMaLop.Text = "";
             txtTenLop.Text = "";
             cboTenKhoa.Text = "";
+            numSiSo.Value = 1;
             txtMaLop.Focus();
         }
 
@@ -102,24 +105,36 @@ namespace QuanLySinhVien.Forms
                 MessageBox.Show("Bạn phải chọn khoa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cboTenKhoa.Focus();
                 return;
+            }else if(numSiSo.Value == 0)
+            {
+                MessageBox.Show("Bạn phải nhập sỉ số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                numSiSo.Focus();
+                return;
             }
             else
             {
                 string sql;
+                int siSo = (int)numSiSo.Value;
                 if (string.IsNullOrEmpty(ma))
                 {
                     sql = "SELECT MaLop FROM tblLop WHERE MaLop = '" + txtMaLop.Text.Trim() + "'";
-                    if(Helper.Functions.CheckKey(sql))
+                    if (Helper.Functions.CheckKey(sql))
                     {
                         MessageBox.Show("Mã lớp đã tồn tại, bạn phải nhập mã lớp khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtMaLop.Focus();
                         return;
                     }
-                    sql = "INSERT INTO tblLop(MaLop, TenLop, MaKhoa) VALUES('" + txtMaLop.Text.Trim() + "',N'" + txtTenLop.Text.Trim() + "','" + cboTenKhoa.SelectedValue.ToString() + "')";
+                    sql = "INSERT INTO tblLop(MaLop, TenLop, SiSo, MaKhoa) " +
+                                 "VALUES('" + txtMaLop.Text.Trim() + "',N'" + txtTenLop.Text.Trim() + "'," +
+                                 siSo + ",'" + cboTenKhoa.SelectedValue.ToString() + "')";
                 }
                 else
                 {
-                    sql = "UPDATE tblLop SET TenLop = N'" + txtTenLop.Text.Trim() + "', MaKhoa = '" + cboTenKhoa.SelectedValue.ToString() + "' WHERE MaLop = '" + ma + "'";
+                    sql = "UPDATE tblLop SET " +
+                        "TenLop = N'" + txtTenLop.Text.Trim() + "', " +
+                        "SiSo = " + siSo + ", " +
+                        "MaKhoa = '" + cboTenKhoa.SelectedValue.ToString() + "' " +
+                        "WHERE MaLop = '" + ma + "'";
                 }
                 Helper.Functions.RunSQL(sql);
                 frmLop_Load(sender, e);

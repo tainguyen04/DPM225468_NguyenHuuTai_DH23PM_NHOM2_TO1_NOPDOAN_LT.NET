@@ -96,7 +96,10 @@ namespace QuanLySinhVien.Forms
                 }
                 else
                 {
-                    sql = "UPDATE tblMonHoc SET TenMonHoc = N'" + txtTenMonHoc.Text.Trim() + "', SoTinChi = " + numTinChi.Value + " WHERE MaMonHoc = '" + ma + "'";
+                    sql = "UPDATE tblMonHoc SET " +
+                                     "TenMonHoc = N'" + txtTenMonHoc.Text.Trim() + "', " +
+                                     "SoTinChi = " + numTinChi.Value + " " +
+                                     "WHERE MaMonHoc = '" + ma + "'";
                 }
                 Helper.Functions.RunSQL(sql);
                 frmMonHoc_Load(sender, e);

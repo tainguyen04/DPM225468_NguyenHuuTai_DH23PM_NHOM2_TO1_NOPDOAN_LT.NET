@@ -31,6 +31,10 @@
             this.txtTimKiem = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.dgvLop = new System.Windows.Forms.DataGridView();
+            this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SiSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenKhoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnTimKiem = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -47,14 +51,13 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboTenKhoa = new System.Windows.Forms.ComboBox();
-            this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SiSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenKhoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numSiSo = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLop)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSiSo)).BeginInit();
             this.SuspendLayout();
             // 
             // txtTimKiem
@@ -81,14 +84,46 @@
             this.SiSo,
             this.TenKhoa});
             this.dgvLop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLop.Location = new System.Drawing.Point(0, 213);
+            this.dgvLop.Location = new System.Drawing.Point(0, 228);
             this.dgvLop.Name = "dgvLop";
             this.dgvLop.ReadOnly = true;
             this.dgvLop.RowHeadersVisible = false;
             this.dgvLop.RowHeadersWidth = 62;
             this.dgvLop.RowTemplate.Height = 28;
-            this.dgvLop.Size = new System.Drawing.Size(949, 278);
+            this.dgvLop.Size = new System.Drawing.Size(949, 263);
             this.dgvLop.TabIndex = 7;
+            // 
+            // MaLop
+            // 
+            this.MaLop.DataPropertyName = "MaLop";
+            this.MaLop.HeaderText = "Mã lớp";
+            this.MaLop.MinimumWidth = 8;
+            this.MaLop.Name = "MaLop";
+            this.MaLop.ReadOnly = true;
+            // 
+            // TenLop
+            // 
+            this.TenLop.DataPropertyName = "TenLop";
+            this.TenLop.HeaderText = "Tên lớp";
+            this.TenLop.MinimumWidth = 8;
+            this.TenLop.Name = "TenLop";
+            this.TenLop.ReadOnly = true;
+            // 
+            // SiSo
+            // 
+            this.SiSo.DataPropertyName = "SiSo";
+            this.SiSo.HeaderText = "Sỉ số";
+            this.SiSo.MinimumWidth = 8;
+            this.SiSo.Name = "SiSo";
+            this.SiSo.ReadOnly = true;
+            // 
+            // TenKhoa
+            // 
+            this.TenKhoa.DataPropertyName = "TenKhoa";
+            this.TenKhoa.HeaderText = "Tên khoa";
+            this.TenKhoa.MinimumWidth = 8;
+            this.TenKhoa.Name = "TenKhoa";
+            this.TenKhoa.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -97,7 +132,7 @@
             this.toolStripLabel1,
             this.txtTimKiem,
             this.btnTimKiem});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 179);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 194);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(949, 34);
             this.toolStrip1.TabIndex = 6;
@@ -192,7 +227,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 128);
+            this.label3.Location = new System.Drawing.Point(29, 154);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 20);
             this.label3.TabIndex = 4;
@@ -232,6 +267,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numSiSo);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cboTenKhoa);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtTenLop);
@@ -241,7 +278,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(949, 179);
+            this.groupBox1.Size = new System.Drawing.Size(949, 194);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin lớp";
@@ -249,42 +286,31 @@
             // cboTenKhoa
             // 
             this.cboTenKhoa.FormattingEnabled = true;
-            this.cboTenKhoa.Location = new System.Drawing.Point(142, 124);
+            this.cboTenKhoa.Location = new System.Drawing.Point(142, 150);
             this.cboTenKhoa.Name = "cboTenKhoa";
             this.cboTenKhoa.Size = new System.Drawing.Size(166, 28);
             this.cboTenKhoa.TabIndex = 5;
             // 
-            // MaLop
+            // label4
             // 
-            this.MaLop.DataPropertyName = "MaLop";
-            this.MaLop.HeaderText = "Mã lớp";
-            this.MaLop.MinimumWidth = 8;
-            this.MaLop.Name = "MaLop";
-            this.MaLop.ReadOnly = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Sỉ số:";
             // 
-            // TenLop
+            // numSiSo
             // 
-            this.TenLop.DataPropertyName = "TenLop";
-            this.TenLop.HeaderText = "Tên lớp";
-            this.TenLop.MinimumWidth = 8;
-            this.TenLop.Name = "TenLop";
-            this.TenLop.ReadOnly = true;
-            // 
-            // SiSo
-            // 
-            this.SiSo.DataPropertyName = "SiSo";
-            this.SiSo.HeaderText = "Sỉ số";
-            this.SiSo.MinimumWidth = 8;
-            this.SiSo.Name = "SiSo";
-            this.SiSo.ReadOnly = true;
-            // 
-            // TenKhoa
-            // 
-            this.TenKhoa.DataPropertyName = "TenKhoa";
-            this.TenKhoa.HeaderText = "Tên khoa";
-            this.TenKhoa.MinimumWidth = 8;
-            this.TenKhoa.Name = "TenKhoa";
-            this.TenKhoa.ReadOnly = true;
+            this.numSiSo.Location = new System.Drawing.Point(142, 113);
+            this.numSiSo.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numSiSo.Name = "numSiSo";
+            this.numSiSo.Size = new System.Drawing.Size(166, 26);
+            this.numSiSo.TabIndex = 8;
             // 
             // frmLop
             // 
@@ -305,6 +331,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSiSo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,5 +362,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TenLop;
         private System.Windows.Forms.DataGridViewTextBoxColumn SiSo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenKhoa;
+        private System.Windows.Forms.NumericUpDown numSiSo;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvDiemRenLuyen = new System.Windows.Forms.DataGridView();
+            this.dgvSinhVien = new System.Windows.Forms.DataGridView();
             this.MSSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,14 +48,14 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.numRenLuyen = new System.Windows.Forms.NumericUpDown();
             this.txtHoTen = new System.Windows.Forms.TextBox();
-            this.cboMSSV = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSoDienThoai = new System.Windows.Forms.TextBox();
+            this.txtMSSV = new System.Windows.Forms.TextBox();
             this.picHinhAnh = new System.Windows.Forms.PictureBox();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -65,22 +65,21 @@
             this.gbGioiTinh = new System.Windows.Forms.GroupBox();
             this.rdbNu = new System.Windows.Forms.RadioButton();
             this.rdbNam = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemRenLuyen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSinhVien)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRenLuyen)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHinhAnh)).BeginInit();
             this.gbGioiTinh.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvDiemRenLuyen
+            // dgvSinhVien
             // 
-            this.dgvDiemRenLuyen.AllowUserToAddRows = false;
-            this.dgvDiemRenLuyen.AllowUserToDeleteRows = false;
-            this.dgvDiemRenLuyen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvDiemRenLuyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDiemRenLuyen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSinhVien.AllowUserToAddRows = false;
+            this.dgvSinhVien.AllowUserToDeleteRows = false;
+            this.dgvSinhVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSinhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSinhVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MSSV,
             this.HoTen,
             this.GioiTinh,
@@ -89,15 +88,17 @@
             this.NgaySinh,
             this.TenLop,
             this.HinhAnh});
-            this.dgvDiemRenLuyen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDiemRenLuyen.Location = new System.Drawing.Point(0, 246);
-            this.dgvDiemRenLuyen.Name = "dgvDiemRenLuyen";
-            this.dgvDiemRenLuyen.ReadOnly = true;
-            this.dgvDiemRenLuyen.RowHeadersVisible = false;
-            this.dgvDiemRenLuyen.RowHeadersWidth = 62;
-            this.dgvDiemRenLuyen.RowTemplate.Height = 28;
-            this.dgvDiemRenLuyen.Size = new System.Drawing.Size(949, 275);
-            this.dgvDiemRenLuyen.TabIndex = 19;
+            this.dgvSinhVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSinhVien.Location = new System.Drawing.Point(0, 246);
+            this.dgvSinhVien.Name = "dgvSinhVien";
+            this.dgvSinhVien.ReadOnly = true;
+            this.dgvSinhVien.RowHeadersVisible = false;
+            this.dgvSinhVien.RowHeadersWidth = 62;
+            this.dgvSinhVien.RowTemplate.Height = 28;
+            this.dgvSinhVien.Size = new System.Drawing.Size(949, 275);
+            this.dgvSinhVien.TabIndex = 19;
+            this.dgvSinhVien.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSinhVien_CellFormatting);
+            this.dgvSinhVien.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvSinhVien_DataError);
             // 
             // MSSV
             // 
@@ -222,6 +223,7 @@
             this.btnThoat.TabIndex = 4;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnXoa
             // 
@@ -234,6 +236,7 @@
             this.btnXoa.TabIndex = 3;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnLuu
             // 
@@ -246,6 +249,7 @@
             this.btnLuu.TabIndex = 2;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnSua
             // 
@@ -258,6 +262,7 @@
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -270,18 +275,7 @@
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
-            // 
-            // numRenLuyen
-            // 
-            this.numRenLuyen.Location = new System.Drawing.Point(499, 36);
-            this.numRenLuyen.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.numRenLuyen.Name = "numRenLuyen";
-            this.numRenLuyen.Size = new System.Drawing.Size(199, 26);
-            this.numRenLuyen.TabIndex = 14;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txtHoTen
             // 
@@ -289,14 +283,6 @@
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(198, 26);
             this.txtHoTen.TabIndex = 10;
-            // 
-            // cboMSSV
-            // 
-            this.cboMSSV.FormattingEnabled = true;
-            this.cboMSSV.Location = new System.Drawing.Point(156, 34);
-            this.cboMSSV.Name = "cboMSSV";
-            this.cboMSSV.Size = new System.Drawing.Size(198, 28);
-            this.cboMSSV.TabIndex = 9;
             // 
             // label7
             // 
@@ -315,7 +301,6 @@
             this.label5.Size = new System.Drawing.Size(102, 20);
             this.label5.TabIndex = 6;
             this.label5.Text = "Số điện thoại";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label2
             // 
@@ -337,6 +322,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtSoDienThoai);
+            this.groupBox1.Controls.Add(this.txtMSSV);
             this.groupBox1.Controls.Add(this.picHinhAnh);
             this.groupBox1.Controls.Add(this.txtDiaChi);
             this.groupBox1.Controls.Add(this.label4);
@@ -344,9 +331,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.dtpNgaySinh);
             this.groupBox1.Controls.Add(this.gbGioiTinh);
-            this.groupBox1.Controls.Add(this.numRenLuyen);
             this.groupBox1.Controls.Add(this.txtHoTen);
-            this.groupBox1.Controls.Add(this.cboMSSV);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label2);
@@ -359,6 +344,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin sinh viên";
             // 
+            // txtSoDienThoai
+            // 
+            this.txtSoDienThoai.Location = new System.Drawing.Point(498, 32);
+            this.txtSoDienThoai.Name = "txtSoDienThoai";
+            this.txtSoDienThoai.Size = new System.Drawing.Size(198, 26);
+            this.txtSoDienThoai.TabIndex = 23;
+            // 
+            // txtMSSV
+            // 
+            this.txtMSSV.Location = new System.Drawing.Point(156, 38);
+            this.txtMSSV.Name = "txtMSSV";
+            this.txtMSSV.Size = new System.Drawing.Size(198, 26);
+            this.txtMSSV.TabIndex = 22;
+            // 
             // picHinhAnh
             // 
             this.picHinhAnh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -366,8 +365,10 @@
             this.picHinhAnh.Location = new System.Drawing.Point(764, 39);
             this.picHinhAnh.Name = "picHinhAnh";
             this.picHinhAnh.Size = new System.Drawing.Size(143, 166);
+            this.picHinhAnh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picHinhAnh.TabIndex = 21;
             this.picHinhAnh.TabStop = false;
+            this.picHinhAnh.Click += new System.EventHandler(this.picHinhAnh_Click);
             // 
             // txtDiaChi
             // 
@@ -450,18 +451,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 613);
-            this.Controls.Add(this.dgvDiemRenLuyen);
+            this.Controls.Add(this.dgvSinhVien);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmSinhVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sinh viên";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDiemRenLuyen)).EndInit();
+            this.Load += new System.EventHandler(this.frmSinhVien_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSinhVien)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numRenLuyen)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHinhAnh)).EndInit();
@@ -479,16 +480,14 @@
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.ToolStripButton btnTimKiem;
-        private System.Windows.Forms.DataGridView dgvDiemRenLuyen;
+        private System.Windows.Forms.DataGridView dgvSinhVien;
         private System.Windows.Forms.ToolStripTextBox txtTimKiem;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSua;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.NumericUpDown numRenLuyen;
         private System.Windows.Forms.TextBox txtHoTen;
-        private System.Windows.Forms.ComboBox cboMSSV;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
@@ -511,5 +510,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NgaySinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenLop;
         private System.Windows.Forms.DataGridViewImageColumn HinhAnh;
+        private System.Windows.Forms.TextBox txtMSSV;
+        private System.Windows.Forms.TextBox txtSoDienThoai;
     }
 }
