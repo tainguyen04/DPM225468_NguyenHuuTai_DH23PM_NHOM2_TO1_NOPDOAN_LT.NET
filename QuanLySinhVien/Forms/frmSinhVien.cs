@@ -382,7 +382,7 @@ namespace QuanLySinhVien.Forms
             {
                 try
                 {
-                    // SQL lấy dữ liệu sinh viên + lớp + khoa
+                    // SQL lấy dữ liệu sinh viên + lớp
                     string sql = @"SELECT sv.MSSV, sv.HoTen, sv.GioiTinh, sv.SoDienThoai, sv.DiaChi, sv.NgaySinh,
                                   sv.MaLop, l.TenLop, sv.HinhAnh
                            FROM tblSinhVien sv

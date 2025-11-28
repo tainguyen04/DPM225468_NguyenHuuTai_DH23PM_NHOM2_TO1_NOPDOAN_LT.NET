@@ -39,6 +39,7 @@ namespace QuanLySinhVien.Forms
             mnuDangXuat.Enabled = false;
 
             mnuDangNhap.Enabled = true;
+            
       
         }
         public void QuyenNhanVien()
@@ -220,7 +221,7 @@ namespace QuanLySinhVien.Forms
         
         private void mnuDangXuat_Click(object sender, EventArgs e)
         {
-            DangNhap.Quyen = null;
+            _quyen = "";
             ChuaPhanQuyen();
         }
 

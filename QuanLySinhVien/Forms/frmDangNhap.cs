@@ -42,7 +42,7 @@
                 if (BCrypt.Net.BCrypt.Verify(matKhau, hashed))
                 {
                     this.Quyen = quyen; 
-                    MessageBox.Show("Đăng nhập thành công!");
+                    MessageBox.Show("Đăng nhập thành công với quyền:"+quyen);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
